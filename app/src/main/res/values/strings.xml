@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">testing</string>
+    <string name="User_Name">user name</string>
+    <string name="User_Email">user email</string>
+    <string name="title_activity_home_page">home_page</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    <string name="my_image_description">he</string>
+
+</resources>
