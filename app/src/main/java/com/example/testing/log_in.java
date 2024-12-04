@@ -51,6 +51,7 @@ public class log_in extends AppCompatActivity {
                 String passwordtext = password.getText().toString().trim();
                 if(TextUtils.isEmpty(emailtext) || TextUtils.isEmpty(passwordtext)){
                     Toast.makeText(log_in.this,"No empty fields allowed",Toast.LENGTH_SHORT).show();
+                    progressBa.setVisibility(View.GONE);
                 }
                 else {
 
@@ -60,9 +61,11 @@ public class log_in extends AppCompatActivity {
 
                             if (task.isSuccessful()) {
                                 progressBa.setVisibility(View.GONE);
+                                Toast.makeText(log_in.this, "LogIn successfully", Toast.LENGTH_SHORT).show();
                                 startActivity(it);
                             } else {
-                                Toast.makeText(log_in.this,"error occurred",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(log_in.this,task.getException().getMessage(),Toast.LENGTH_SHORT).show();
+                                progressBa.setVisibility(View.GONE);
                             }
                         }
                     });

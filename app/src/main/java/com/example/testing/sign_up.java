@@ -26,7 +26,7 @@ public class sign_up extends AppCompatActivity {
     private EditText password;
     private Button submit;
     ProgressBar progressbar_sign;
-    Button alhaa;
+    Button already;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +44,7 @@ public class sign_up extends AppCompatActivity {
         password = findViewById(R.id.editTextTextPassword);
         submit = findViewById(R.id.button);
         progressbar_sign = findViewById(R.id.pb);
-        alhaa = findViewById(R.id.button2);
+        already = findViewById(R.id.button2);
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -53,6 +53,7 @@ public class sign_up extends AppCompatActivity {
                 String passwordtext = password.getText().toString().trim();
                 if(TextUtils.isEmpty(emailtext) || TextUtils.isEmpty(passwordtext)){
                     Toast.makeText(sign_up.this,"No empty fields allowed",Toast.LENGTH_SHORT).show();
+                    progressbar_sign.setVisibility(View.GONE);
                 }
                 else {
 
@@ -61,16 +62,18 @@ public class sign_up extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
                                 progressbar_sign.setVisibility(View.GONE);
+                                Toast.makeText(sign_up.this, "Account Created Successfully", Toast.LENGTH_SHORT).show();
                                 startActivity(it);
                             } else {
-                                Toast.makeText(sign_up.this,"error occurred",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(sign_up.this,task.getException().getMessage(),Toast.LENGTH_SHORT).show();
+                                progressbar_sign.setVisibility(View.GONE);
                             }
                         }
                     });
                 }
             }
         });
-        alhaa.setOnClickListener(new View.OnClickListener() {
+        already.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(allready);
